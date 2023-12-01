@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,7 +26,9 @@ public class UserController {
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody UserDTO data) {
 
-        User newUser = userService.createUser(data);
+        String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
+
+        User newUser = userService.createUser(data, encryptedPassword);
         return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
 
     }

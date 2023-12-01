@@ -36,8 +36,11 @@ public class UserService {
         this.repository.save(user);
     }
 
-    public User createUser(UserDTO data) {
+    public User createUser(UserDTO data, String encriptedPassword) {
+        
+
         User newUser = new User(data);
+        newUser.setPassword(encriptedPassword);
         this.saveUser(newUser);
         return newUser;
     }
