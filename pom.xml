@@ -9,10 +9,10 @@
 		<version>3.1.5</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.picpaysimplificado</groupId>
-	<artifactId>picpaysimplificado</artifactId>
+	<groupId>com.electronicpoint</groupId>
+	<artifactId>electronicpoint</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>picpaysimplificado</name>
+	<name>electronicpoint</name>
 	<description>Projeto para estudo de Java Spring: Resolvendo desafio Back-end do PicPay</description>
 	<properties>
 		<java.version>17</java.version>
