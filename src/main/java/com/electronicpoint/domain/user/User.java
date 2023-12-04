@@ -1,6 +1,5 @@
 package com.electronicpoint.domain.user;
 
-import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 
@@ -12,6 +11,7 @@ import com.electronicpoint.domain.role.Role;
 import com.electronicpoint.dtos.RegisterDTO;
 import com.electronicpoint.dtos.UserDTO;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -55,36 +55,32 @@ public class User implements UserDetails {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    private BigDecimal balance;
-
     @Enumerated(EnumType.STRING)
     private UserType userType;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "TB_USERS_ROLES", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
 
     public User(UserDTO userDto) {
         this.firstName = userDto.firstName();
         this.lastName = userDto.lastName();
-        this.balance = userDto.balance();
         this.email = userDto.email();
         this.password = userDto.password();
         this.document = userDto.document();
         this.userType = userDto.userType();
-         this.roles = userDto.roles();
+        this.roles = userDto.roles();
     }
 
     public User(RegisterDTO registerDTO) {
         this.firstName = registerDTO.firstName();
         this.lastName = registerDTO.lastName();
-        this.balance = registerDTO.balance();
         this.email = registerDTO.email();
         this.password = registerDTO.password();
         this.document = registerDTO.document();
         this.userType = registerDTO.userType();
-       
+
     }
 
     @Override
