@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.electronicpoint.domain.employee.Employee;
-import com.electronicpoint.dtos.EmployeeDTO;
+import com.electronicpoint.dtos.employee.EmployeeRequestDTO;
 import com.electronicpoint.repositories.EmployeeRepository;
 
 @Service
@@ -24,8 +24,7 @@ public class EmployeeService {
         this.repository.save(employee);
     }
 
-    public Employee createEmployee(EmployeeDTO data, String encriptedPassword) {
-
+    public Employee createEmployee(EmployeeRequestDTO data, String encriptedPassword) {
 
         Employee newEmployee = new Employee(data);
         newEmployee.setPassword(encriptedPassword);

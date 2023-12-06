@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.electronicpoint.domain.employee.Employee;
 import com.electronicpoint.domain.marking.Marking;
-import com.electronicpoint.dtos.MarkingDTO;
+import com.electronicpoint.dtos.marking.MarkingDTO;
 import com.electronicpoint.services.MarkingService;
 
 @RestController()

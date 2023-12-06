@@ -1,4 +1,4 @@
-package com.electronicpoint.dtos;
+package com.electronicpoint.dtos.marking;
 
 import java.time.LocalDateTime;
 
@@ -8,7 +8,7 @@ import lombok.Data;
 public class MarkingDTO {
     private Long id;
     private LocalDateTime timestamp;
-    private UserMarkingDTO user;
+    private EmployeeMarkingDTO user;
     private Boolean isValidated;
 
 }

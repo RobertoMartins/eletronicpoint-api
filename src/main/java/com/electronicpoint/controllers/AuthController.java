@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.electronicpoint.domain.employee.Employee;
 import com.electronicpoint.domain.role.Role;
-import com.electronicpoint.dtos.AuthDTO;
-import com.electronicpoint.dtos.AuthResponseDTO;
-import com.electronicpoint.dtos.RegisterDTO;
+import com.electronicpoint.dtos.auth.AuthDTO;
+import com.electronicpoint.dtos.auth.AuthResponseDTO;
+import com.electronicpoint.dtos.auth.RegisterDTO;
 import com.electronicpoint.infra.security.TokenService;
 import com.electronicpoint.repositories.EmployeeRepository;
 import com.electronicpoint.services.RoleService;

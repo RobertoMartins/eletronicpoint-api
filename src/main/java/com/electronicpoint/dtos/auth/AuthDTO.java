@@ -1,4 +1,4 @@
-package com.electronicpoint.dtos;
+package com.electronicpoint.dtos.auth;
 
 public record AuthDTO(String login, String password) {
 

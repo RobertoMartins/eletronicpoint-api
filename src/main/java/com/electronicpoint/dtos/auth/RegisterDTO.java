@@ -1,4 +1,4 @@
-package com.electronicpoint.dtos;
+package com.electronicpoint.dtos.auth;
 
 import com.electronicpoint.domain.employee.Position;
 
