@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.electronicpoint.repositories.UserRepository;
+import com.electronicpoint.repositories.EmployeeRepository;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -23,7 +23,7 @@ public class SecurityFilter extends OncePerRequestFilter {
     TokenService tokenService;
 
     @Autowired
-    UserRepository userRepository;
+    EmployeeRepository employeeRepository;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -36,7 +36,7 @@ public class SecurityFilter extends OncePerRequestFilter {
 
             System.out.println("SUBB: " + subject);
 
-            UserDetails user = userRepository.findByEmail(subject);
+            UserDetails user = employeeRepository.findByEmail(subject);
 
             System.out.println("user: " + user);
 

@@ -5,13 +5,13 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.electronicpoint.domain.user.User;
+import com.electronicpoint.domain.employee.Employee;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
-    Optional<User> findUserByDocument(String document);
+    Optional<Employee> findEmployeeByDocument(String document);
 
-    Optional<User> findUserById(Long id);
+    Optional<Employee> findEmployeeById(Long id);
 
     UserDetails findByEmail(String email);
 }

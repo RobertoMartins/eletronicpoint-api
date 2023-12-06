@@ -1,8 +1,8 @@
 package com.electronicpoint.dtos;
 
-import com.electronicpoint.domain.user.UserType;
+import com.electronicpoint.domain.employee.Position;
 
 public record RegisterDTO(String firstName, String lastName, String document, String email,
-        String password, UserType userType) {
+                String password, Position position) {
 
 }

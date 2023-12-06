@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tb_roles")
+@Table(name = "TB_ROLE")
 public class Role implements GrantedAuthority {
 
     @Id
