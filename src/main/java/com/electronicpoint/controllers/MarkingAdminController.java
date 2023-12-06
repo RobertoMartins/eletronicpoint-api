@@ -21,9 +21,9 @@ public class MarkingAdminController {
     MarkingService markingService;
 
     @GetMapping("/{userId}")
-    public ResponseEntity<List<Marking>> getMarkingsByUser(@PathVariable("userId") Long userId) {
+    public ResponseEntity<List<Marking>> getMarkingsByEmployee(@PathVariable("userId") Long userId) {
 
-        List<Marking> markings = markingService.getMarkingsByUser(userId);
+        List<Marking> markings = markingService.getMarkingsByEmployee(userId);
         return new ResponseEntity<>(markings, HttpStatus.OK);
 
     }

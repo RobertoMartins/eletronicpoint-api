@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.electronicpoint.domain.employee.Employee;
 import com.electronicpoint.domain.role.Role;
-import com.electronicpoint.domain.user.User;
 import com.electronicpoint.dtos.AuthDTO;
 import com.electronicpoint.dtos.AuthResponseDTO;
 import com.electronicpoint.dtos.RegisterDTO;
 import com.electronicpoint.infra.security.TokenService;
-import com.electronicpoint.repositories.UserRepository;
+import com.electronicpoint.repositories.EmployeeRepository;
 import com.electronicpoint.services.RoleService;
 
 @RestController
@@ -31,7 +31,7 @@ public class AuthController {
     private AuthenticationManager authenticatedAuthorizationManager;
 
     @Autowired
-    private UserRepository repository;
+    private EmployeeRepository repository;
 
     @Autowired
     TokenService tokenService;
@@ -46,20 +46,20 @@ public class AuthController {
                 data.password());
         Authentication auth = this.authenticatedAuthorizationManager.authenticate(usernamePassword);
 
-        String token = tokenService.generateToken((User) auth.getPrincipal());
+        String token = tokenService.generateToken((Employee) auth.getPrincipal());
 
         return ResponseEntity.ok(new AuthResponseDTO(token));
 
     }
 
     @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestBody RegisterDTO data) {
+    public ResponseEntity<Employee> register(@RequestBody RegisterDTO data) {
 
         if (repository.findByEmail(data.email()) != null)
             return ResponseEntity.badRequest().build();
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
 
-        User newUser = new User(data);
+        Employee newUser = new Employee(data);
         newUser.setPassword(encryptedPassword);
 
         List<Role> rolesUser = new ArrayList<Role>();

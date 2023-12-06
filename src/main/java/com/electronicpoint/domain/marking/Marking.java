@@ -2,7 +2,7 @@ package com.electronicpoint.domain.marking;
 
 import java.time.LocalDateTime;
 
-import com.electronicpoint.domain.user.User;
+import com.electronicpoint.domain.employee.Employee;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,7 +21,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-@Table(name = "tb_markings")
+@Table(name = "TB_MARKING")
 public class Marking {
 
     @Id
@@ -29,8 +29,8 @@ public class Marking {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
 
     private LocalDateTime timestamp;
 

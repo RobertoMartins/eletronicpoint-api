@@ -1,4 +1,4 @@
-package com.electronicpoint.domain.user;
+package com.electronicpoint.domain.employee;
 
 import java.util.Collection;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.electronicpoint.domain.role.Role;
 import com.electronicpoint.dtos.RegisterDTO;
-import com.electronicpoint.dtos.UserDTO;
+import com.electronicpoint.dtos.EmployeeDTO;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -23,6 +23,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -31,13 +32,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "tb_users")
+@Table(name = "TB_EMPLOYEE")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class User implements UserDetails {
+public class Employee implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,31 +56,32 @@ public class User implements UserDetails {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    private UserType userType;
+    @ManyToOne
+    @JoinColumn(name = "position_id")
+    private Position position;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "TB_USERS_ROLES", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "TB_EMPLOYEES_ROLES", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
 
-    public User(UserDTO userDto) {
+    public Employee(EmployeeDTO userDto) {
         this.firstName = userDto.firstName();
         this.lastName = userDto.lastName();
         this.email = userDto.email();
         this.password = userDto.password();
         this.document = userDto.document();
-        this.userType = userDto.userType();
+        this.position = userDto.position();
         this.roles = userDto.roles();
     }
 
-    public User(RegisterDTO registerDTO) {
+    public Employee(RegisterDTO registerDTO) {
         this.firstName = registerDTO.firstName();
         this.lastName = registerDTO.lastName();
         this.email = registerDTO.email();
         this.password = registerDTO.password();
         this.document = registerDTO.document();
-        this.userType = registerDTO.userType();
+        this.position = registerDTO.position();
 
     }
 

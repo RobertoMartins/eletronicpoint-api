@@ -12,31 +12,31 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.electronicpoint.domain.user.User;
-import com.electronicpoint.dtos.UserDTO;
-import com.electronicpoint.services.UserService;
+import com.electronicpoint.domain.employee.Employee;
+import com.electronicpoint.dtos.EmployeeDTO;
+import com.electronicpoint.services.EmployeeService;
 
 @RestController()
 @RequestMapping("/users")
 public class UserController {
 
     @Autowired
-    UserService userService;
+    EmployeeService employeeService;
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody UserDTO data) {
+    public ResponseEntity<Employee> createUser(@RequestBody EmployeeDTO data) {
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
 
-        User newUser = userService.createUser(data, encryptedPassword);
-        return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
+        Employee newEmployee = employeeService.createEmployee(data, encryptedPassword);
+        return new ResponseEntity<Employee>(newEmployee, HttpStatus.CREATED);
 
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getAll() {
-        List<User> users = this.userService.getAllUsers();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+    public ResponseEntity<List<Employee>> getAll() {
+        List<Employee> employees = this.employeeService.getAllEmployees();
+        return new ResponseEntity<>(employees, HttpStatus.OK);
     }
 
 }
