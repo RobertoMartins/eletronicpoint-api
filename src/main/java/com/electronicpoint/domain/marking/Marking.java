@@ -36,4 +36,6 @@ public class Marking {
 
     private Boolean isValidated;
 
+    private Boolean wasEdited;
+
 }

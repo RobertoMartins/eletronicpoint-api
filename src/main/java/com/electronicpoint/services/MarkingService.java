@@ -28,4 +28,8 @@ public class MarkingService {
         marking.setIsValidated(true);
         return repository.save(marking);
     }
+
+    public List<Marking> getMarkinsPendingValidation(Long managerId) {
+        return repository.getMarkinsPendingValidation(managerId);
+    }
 }
